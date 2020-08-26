@@ -1,8 +1,8 @@
-package com.tim2.backendPSW.repository;
+package com.tim3.backendPSW.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.tim2.backendPSW.models.User;
+import com.tim3.backendPSW.models.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{	
 }

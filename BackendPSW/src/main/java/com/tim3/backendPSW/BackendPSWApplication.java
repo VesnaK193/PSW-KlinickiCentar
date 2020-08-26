@@ -1,4 +1,4 @@
-package com.tim2.backendPSW;
+package com.tim3.backendPSW;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

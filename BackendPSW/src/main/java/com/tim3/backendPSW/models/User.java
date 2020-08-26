@@ -1,4 +1,4 @@
-package com.tim2.backendPSW.models;
+package com.tim3.backendPSW.models;
 
 import java.io.Serializable;
 

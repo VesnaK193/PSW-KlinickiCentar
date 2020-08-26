@@ -1,4 +1,4 @@
-package com.tim2.backendPSW.controllers;
+package com.tim3.backendPSW.controllers;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tim2.backendPSW.models.User;
-import com.tim2.backendPSW.services.UserService;
+import com.tim3.backendPSW.models.User;
+import com.tim3.backendPSW.services.UserService;
 
 @RestController
 @CrossOrigin(origins = "*")
