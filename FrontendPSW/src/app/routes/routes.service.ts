@@ -10,4 +10,12 @@ export class RoutesService {
     get getAllUsers(): string{
         return this._app_url + 'getAllUsers';
     }
+
+    get login(): string{
+        return this._app_url + 'login';
+    }
+
+    get register() : string{
+        return this._app_url + 'register';
+    }
 }

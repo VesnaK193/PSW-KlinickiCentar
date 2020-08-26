@@ -1,2 +1,2 @@
-insert into users (username, password) values ('vesna', '123');
-insert into users (username, password) values ('vesna1', '123s');
+insert into users (username, password, email, lastname, address, city, country, phone) values ('vesna', '123','vesna@k.com','karaklic','Dj. Rajkovic 12','Novi Sad','Srbija','066123456');
+insert into users (username, password, email, lastname, address, city, country, phone) values ('vesna1', '123','vesna1@k.com','karaklic1','Dj. Rajkovic 121','Novi Sad','Srbija','0661234561');
