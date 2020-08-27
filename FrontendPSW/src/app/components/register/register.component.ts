@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   }
 
   registerClick():void {
-    this.authService.register(this.user).subscribe(data=> {
+    this.authService.saveUser(this.user).subscribe(data=> {
       console.log(data);
     })
   }

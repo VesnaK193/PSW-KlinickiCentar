@@ -9,9 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name = "users")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 public class User {
 	
 	/**
@@ -23,8 +26,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "username", nullable = false, unique = true)
-	private String username;
+	@Column(name = "firstname", nullable = false, unique = true)
+	private String firstname;
 	
 	@Column(name = "password", nullable = false)
 	private String password;
@@ -47,8 +50,8 @@ public class User {
 	@Column(name = "phone", nullable = false)
 	private Long phone;
 	
-	//@Column(name = "uloga", nullable = false)
-	//private String uloga;
+	@Column(name = "role", nullable = false)
+	private String role;
 
 
 	public User() {	
@@ -114,12 +117,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
 	public String getPassword() {
@@ -130,13 +133,13 @@ public class User {
 		this.password = password;
 	}
 
-	/*public String getUloga() {
-		return uloga;
+	public String getRole() {
+		return role;
 	}
 
-	public void setUloga(String uloga) {
-		this.uloga = uloga;
-	}*/
+	public void setRole(String role) {
+		this.role = role;
+	}
 	
 
 }

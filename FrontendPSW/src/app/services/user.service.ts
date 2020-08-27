@@ -14,4 +14,12 @@ export class UserService {
   public getUsers():Observable<User[]> {
     return this.httpClient.get<User[]>(this.routes.getAllUsers);
 }
+
+public getUsersOnHold():Observable<User[]> {
+  return this.httpClient.get<User[]>(this.routes.getAllUsersOnHold);
+}
+
+public getUserById(id:number):Observable<User> {
+  return this.httpClient.post<User>(this.routes.getUserById,id);
+}
 }

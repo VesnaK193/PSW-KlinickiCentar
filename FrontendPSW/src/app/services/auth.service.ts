@@ -15,7 +15,10 @@ export class AuthService {
     return this.httpClient.post<User>(this.routes.login, user);
 }
 
-public register(user : User) : Observable<User> {
-  return this.httpClient.post<User>(this.routes.register,user);
+public saveUser(user : User) : Observable<User> {
+  return this.httpClient.post<User>(this.routes.saveUser,user);
+}
+public sendLink(user : User) : Observable<User> {
+  return this.httpClient.post<User>(this.routes.sendLink,user);
 }
 }

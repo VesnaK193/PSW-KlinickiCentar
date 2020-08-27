@@ -18,6 +18,14 @@ public class UserService {
 		return userRepository.findAll();
 	}
 	
+	public List<User> getAllUsersOnHold() {
+		return userRepository.findAllByRole("naCekanju");
+	}
+	
+	public User getUserById(Long id) {
+		return userRepository.getOne(id);
+	}
+	
 	public User login(User user) {
 		List<User> users = getAllUsers();
 		User noviUser = new User();
@@ -32,9 +40,32 @@ public class UserService {
 		return noviUser;
 	}
 	
-	public User register(User user) {
+	public User saveUser(User user) {
 		User noviUser = new User();
-		noviUser.setUsername(user.getUsername());
+		if(user.getId() == null) {
+			noviUser.setRole("naCekanju");
+		}else {
+			noviUser.setRole("pacijent");
+			noviUser.setId(user.getId());
+		}
+		noviUser.setFirstname(user.getFirstname());
+		noviUser.setLastname(user.getLastname());
+		noviUser.setEmail(user.getEmail());
+		noviUser.setPassword(user.getPassword());
+		noviUser.setAddress(user.getAddress());
+		noviUser.setCity(user.getCity());
+		noviUser.setCountry(user.getCountry());
+		noviUser.setPhone(user.getPhone());
+		
+		noviUser = userRepository.save(noviUser);
+		return noviUser;
+	}
+	
+	public User linkSent(User user) {
+		User noviUser = new User();
+		noviUser.setId(user.getId());
+		noviUser.setRole("linkPoslat");
+		noviUser.setFirstname(user.getFirstname());
 		noviUser.setLastname(user.getLastname());
 		noviUser.setEmail(user.getEmail());
 		noviUser.setPassword(user.getPassword());

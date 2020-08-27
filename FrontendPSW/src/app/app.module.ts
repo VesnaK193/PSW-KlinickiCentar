@@ -11,6 +11,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { AdminKcComponent } from './components/admin-kc/admin-kc.component';
+import { ZahteviZaRegistracijuComponent } from './components/admin-kc/zahtevi-za-registraciju/zahtevi-za-registraciju.component';
+import { AccountActivatedComponent } from './components/register/account-activated/account-activated.component';
+import { PacijentComponent } from './components/pacijent/pacijent.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,10 @@ import { LoginComponent } from './components/login/login.component';
     UserComponent,
     RegisterComponent,
     LoginComponent,
+    AdminKcComponent,
+    ZahteviZaRegistracijuComponent,
+    AccountActivatedComponent,
+    PacijentComponent,
   ],
   imports: [
     BrowserModule,

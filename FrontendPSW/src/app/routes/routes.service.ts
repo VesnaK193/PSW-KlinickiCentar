@@ -15,7 +15,19 @@ export class RoutesService {
         return this._app_url + 'login';
     }
 
-    get register() : string{
-        return this._app_url + 'register';
+    get saveUser() : string{
+        return this._app_url + 'saveUser';
+    }
+
+    get getAllUsersOnHold(): string{
+        return this._app_url + 'getAllUsersOnHold';
+    }
+
+    get getUserById(): string{
+        return this._app_url + 'getUserById';
+    }
+
+    get sendLink(): string{
+        return this._app_url + 'sendLink';
     }
 }

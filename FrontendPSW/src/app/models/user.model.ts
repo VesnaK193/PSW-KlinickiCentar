@@ -2,12 +2,13 @@ import { Identifiers } from '@angular/compiler';
 
 export class User {
     id : number;
-    username : string;
-    password : string;
-    email : string;
+    firstname : string;
     lastname : string;
-    adress : string;
+    email : string;
+    password : string;
+    address : string;
     city : string;
     country : string;
     phone : number;
+    role : string;
 }
