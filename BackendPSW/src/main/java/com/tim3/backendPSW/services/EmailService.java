@@ -24,7 +24,7 @@ public class EmailService {
 	
 	@Autowired
 	private Environment env;
-	
+
 	@Async
 	public void sendLink(User u) throws MailException, InterruptedException, MessagingException{
 	
@@ -50,6 +50,37 @@ public class EmailService {
 						"    color: white;\r\n" + 
 						"    border-radius: 5px;\" type=\"submit\" value=\"Aktiviraj Nalog\" />\r\n" + 
 						"</form>"
+						+ "</div>"
+						+ "</body>"
+						+ "</html>";
+		
+		MimeMessage message = javaMailSender.createMimeMessage();
+		
+		MimeMessageHelper helper = new MimeMessageHelper(message, true);
+		helper.setTo(u.getEmail());
+		helper.setSubject("Klinicki Centar");
+		helper.setText(htmlView, true);
+		
+		javaMailSender.send(message);
+	}
+	
+	@Async
+	public void rejectRequest(User u) throws MailException, InterruptedException, MessagingException{
+	
+		String htmlView = "<html>"
+						+ "<body>"
+						+ "<div style=\"width:100%\">"
+						+ "<div style=\"background:#3f51b5;text-align: center;height:50px;margin-bottom:50px\">"
+						+ "<h1 style=\"color:white;margin-top:15px;\">"
+						+ "Klinicki Centar Podrska"
+						+ "</h1>"
+						+ "</div>"
+						+ "<p style=\"padding-left:10px\">Postovani/na, " + u.getFirstname() + " " + u.getLastname() + ",</p>"
+								+ "<hr>"
+						+ "<p style=\"padding-left:10px\">Vas zahtev za kreiranje naloga je odbijen.</p>"
+						+ "<p style=\"padding-left:10px\">Razlog odbijanja: "
+						+ "<p style=\"padding-left:10px; font-style: italic;\">\"" + u.getRole() + "\"</p>"
+								+ "<hr>"
 						+ "</div>"
 						+ "</body>"
 						+ "</html>";

@@ -30,4 +30,8 @@ export class RoutesService {
     get sendLink(): string{
         return this._app_url + 'sendLink';
     }
+
+    get rejectRequest(): string{
+        return this._app_url + 'rejectRequest';
+    }
 }

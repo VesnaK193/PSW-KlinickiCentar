@@ -22,4 +22,8 @@ public getUsersOnHold():Observable<User[]> {
 public getUserById(id:number):Observable<User> {
   return this.httpClient.post<User>(this.routes.getUserById,id);
 }
+
+public rejectRequest(user:User):Observable<User> {
+  return this.httpClient.post<User>(this.routes.rejectRequest,user);
+}
 }
