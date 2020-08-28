@@ -15,6 +15,7 @@ import { AdminKcComponent } from './components/admin-kc/admin-kc.component';
 import { ZahteviZaRegistracijuComponent } from './components/admin-kc/zahtevi-za-registraciju/zahtevi-za-registraciju.component';
 import { AccountActivatedComponent } from './components/register/account-activated/account-activated.component';
 import { PacijentComponent } from './components/pacijent/pacijent.component';
+import { OdbijanjeDialogComponent } from './components/admin-kc/zahtevi-za-registraciju/odbijanje-dialog/odbijanje-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { PacijentComponent } from './components/pacijent/pacijent.component';
     ZahteviZaRegistracijuComponent,
     AccountActivatedComponent,
     PacijentComponent,
+    OdbijanjeDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,7 @@ import { PacijentComponent } from './components/pacijent/pacijent.component';
     HttpClientModule,
     FormsModule
   ],
+  entryComponents: [OdbijanjeDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
