@@ -44,8 +44,11 @@ public class UserService {
 		User noviUser = new User();
 		if(user.getId() == null) {
 			noviUser.setRole("naCekanju");
-		}else {
+		}else if (user.getRole().equals("naCekanju")) {
 			noviUser.setRole("pacijent");
+			noviUser.setId(user.getId());
+		} else {
+			noviUser.setRole(user.getRole());
 			noviUser.setId(user.getId());
 		}
 		noviUser.setFirstname(user.getFirstname());
@@ -76,6 +79,11 @@ public class UserService {
 		
 		noviUser = userRepository.save(noviUser);
 		return noviUser;
+	}
+	
+	public void rejectRequest(User user) {
+		
+		userRepository.deleteById(user.getId());
 	}
 
 }

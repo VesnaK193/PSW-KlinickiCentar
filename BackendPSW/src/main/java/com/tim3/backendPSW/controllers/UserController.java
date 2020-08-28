@@ -75,4 +75,15 @@ public class UserController {
 		User noviUser = userService.linkSent(user);
 		return new ResponseEntity<User>(noviUser, HttpStatus.OK);
 	}
+	
+	@PostMapping("/rejectRequest")
+	public ResponseEntity<User> rejectRequest(@RequestBody User user) {
+		try {
+			emailService.rejectRequest(user);
+		} catch (Exception e) {
+			System.out.println("Greska prilikom slanja maila!" + e.getMessage());
+		}
+		userService.rejectRequest(user);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
 }

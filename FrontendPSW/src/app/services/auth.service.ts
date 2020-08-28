@@ -13,12 +13,16 @@ export class AuthService {
 
   public login(user: User): Observable<User> {
     return this.httpClient.post<User>(this.routes.login, user);
-}
+  }
 
-public saveUser(user : User) : Observable<User> {
-  return this.httpClient.post<User>(this.routes.saveUser,user);
-}
-public sendLink(user : User) : Observable<User> {
-  return this.httpClient.post<User>(this.routes.sendLink,user);
-}
+  public logout(): void {
+    localStorage.setItem("loggedUser","");
+  }
+
+  public saveUser(user: User): Observable<User> {
+    return this.httpClient.post<User>(this.routes.saveUser, user);
+  }
+  public sendLink(user: User): Observable<User> {
+    return this.httpClient.post<User>(this.routes.sendLink, user);
+  }
 }

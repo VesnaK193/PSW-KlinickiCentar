@@ -1,2 +1,3 @@
 insert into users (firstname, password, email, lastname, address, city, country, phone, role) values ('vesna', '123','josipovic.smbb1@gmail.com','karaklic','Dj. Rajkovic 12','Novi Sad','Srbija','066123456','adminKC');
 insert into users (firstname, password, email, lastname, address, city, country, phone, role) values ('vesna1', '123','josipovic.smbb6@gmail.com','karaklic1','Dj. Rajkovic 121','Novi Sad','Srbija','0661234561','naCekanju');
+insert into users (firstname, password, email, lastname, address, city, country, phone, role) values ('Ve', '123','123','Sna','Dj. Rajkovic 121','NS','Srb','0661234561','pacijent');

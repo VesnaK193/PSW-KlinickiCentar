@@ -3,7 +3,8 @@ import { UserService } from 'src/app/services/user.service';
 import { DataSource } from '@angular/cdk/table';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { OdbijanjeDialogComponent } from './odbijanje-dialog/odbijanje-dialog.component';
 
 @Component({
   selector: 'app-zahtevi-za-registraciju',
@@ -14,7 +15,7 @@ export class ZahteviZaRegistracijuComponent implements OnInit {
 
   dataSource : User[];
   displayedColumns: string[] = ['id','ime','prezime','email','grad','drzava','telefon','akcije'];
-  constructor(private userService : UserService, private authService : AuthService, private snackBar : MatSnackBar) { }
+  constructor(private dialog: MatDialog,private userService : UserService, private authService : AuthService, private snackBar : MatSnackBar) { }
 
   ngOnInit() {
     this.userService.getUsersOnHold().subscribe(data=> {
@@ -34,7 +35,23 @@ export class ZahteviZaRegistracijuComponent implements OnInit {
     });
   }
 
-  rejectClicked(){
+  rejectClicked(user: User){
 
+    const dialogRef = this.dialog.open(OdbijanjeDialogComponent, {
+      data: { user: user}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+
+      let temp : User[];
+
+      if(result=="rejected"){
+        this.dataSource.map(u=>{
+          if(u != user) {
+            temp.push(u);
+          }
+        })
+        this.dataSource = temp;
+      }
+    });
   }
 }

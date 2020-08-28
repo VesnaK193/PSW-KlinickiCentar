@@ -7,6 +7,7 @@ import { AdminKcComponent } from './components/admin-kc/admin-kc.component';
 import { ZahteviZaRegistracijuComponent } from './components/admin-kc/zahtevi-za-registraciju/zahtevi-za-registraciju.component';
 import { AccountActivatedComponent } from './components/register/account-activated/account-activated.component';
 import { PacijentComponent } from './components/pacijent/pacijent.component';
+import { PacijentProfilComponent } from './components/pacijent/pacijent-profil/pacijent-profil.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,7 @@ const routes: Routes = [
     ]
   },
   { path: 'pacijent', component: PacijentComponent , children: [
-    
+    { path: 'profil', component: PacijentProfilComponent },
     ]
   }
 ];

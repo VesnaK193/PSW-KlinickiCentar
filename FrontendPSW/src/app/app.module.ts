@@ -16,6 +16,8 @@ import { ZahteviZaRegistracijuComponent } from './components/admin-kc/zahtevi-za
 import { AccountActivatedComponent } from './components/register/account-activated/account-activated.component';
 import { PacijentComponent } from './components/pacijent/pacijent.component';
 import { OdbijanjeDialogComponent } from './components/admin-kc/zahtevi-za-registraciju/odbijanje-dialog/odbijanje-dialog.component';
+import { PacijentProfilComponent } from './components/pacijent/pacijent-profil/pacijent-profil.component';
+import { PacijentProfilDialogComponent } from './components/pacijent/pacijent-profil/pacijent-profil-dialog/pacijent-profil-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { OdbijanjeDialogComponent } from './components/admin-kc/zahtevi-za-regis
     AccountActivatedComponent,
     PacijentComponent,
     OdbijanjeDialogComponent,
+    PacijentProfilComponent,
+    PacijentProfilDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,7 @@ import { OdbijanjeDialogComponent } from './components/admin-kc/zahtevi-za-regis
     HttpClientModule,
     FormsModule
   ],
-  entryComponents: [OdbijanjeDialogComponent],
+  entryComponents: [PacijentProfilDialogComponent, OdbijanjeDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
