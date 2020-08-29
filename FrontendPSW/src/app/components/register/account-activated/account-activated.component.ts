@@ -22,7 +22,8 @@ export class AccountActivatedComponent implements OnInit {
     this.userService.getUserById(this.id).subscribe(data=>{
       this.user=data;
       this.authService.saveUser(this.user).subscribe(data1=>{
-        console.log(data1);
+        let userString : string = JSON.stringify(data1);
+        localStorage.setItem("loggedUser", userString);
       });
     })
   }
