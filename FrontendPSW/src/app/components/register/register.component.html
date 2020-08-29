@@ -1,3 +1,6 @@
+<div *ngIf="spinner==true" class="spinner-container-modal">
+  <mat-spinner></mat-spinner>
+</div>
 <mat-toolbar color="primary" class="app-header">
     <div><a href="/" class="navlogo">Klinicki Centar</a></div>
     <span class="nav-tool-items">
@@ -20,7 +23,7 @@
             <input matInput placeholder="Prezime" [(ngModel)]="user.lastname" name="prezimeField" required>
           </mat-form-field>
           <mat-form-field class="full-width">
-            <input matInput placeholder="email" [(ngModel)]="user.email" name="emailField" required>
+            <input matInput placeholder="email" type="email" [(ngModel)]="user.email" name="emailField" required>
           </mat-form-field>
           <mat-form-field class="full-width">
             <input matInput placeholder="Lozinka" type="password" [(ngModel)]="user.password" name="passwordField" required>
@@ -29,21 +32,23 @@
             <input matInput placeholder="Ponovi lozinku" type="password" [(ngModel)]="repeatPassword" name="passwordField1" required>
           </mat-form-field>
           <mat-form-field class="full-width">
-            <input matInput placeholder="Adresa" type="address" [(ngModel)]="user.address" name="addressField" required>
+            <input matInput placeholder="Adresa" [(ngModel)]="user.address" name="addressField" required>
           </mat-form-field>
           <mat-form-field class="full-width">
-            <input matInput placeholder="Grad" type="city" [(ngModel)]="user.city" name="cityField" required>
+            <input matInput placeholder="Grad"[(ngModel)]="user.city" name="cityField" required>
           </mat-form-field>
           <mat-form-field class="full-width">
-            <input matInput placeholder="Drzava" type="country" [(ngModel)]="user.country" name="countryField" required>
+            <input matInput placeholder="Drzava" [(ngModel)]="user.country" name="countryField" required>
           </mat-form-field>
           <mat-form-field class="full-width">
-            <input matInput placeholder="Broj telefona" type="phone" [(ngModel)]="user.phone" name="phoneField" required>
+            <input matInput placeholder="Broj telefona" type="number" [(ngModel)]="user.phone" name="phoneField" required>
           </mat-form-field>
         </mat-card-content>
         <!-- <span *ngIf="dataInvalid" style="font-size: 15px; position: relative; top: -15px; color: red;">Pogresan email ili
           lozinka</span> -->
-        <button mat-stroked-button color="primary" class="btn-block" type="submit">Potvrdi</button>
+        <button mat-stroked-button color="primary" class="btn-block" type="submit" [disabled]="formInvalid()"
+
+        >Potvrdi</button>
       </form> 
     </mat-card>
   </div>

@@ -12,7 +12,7 @@ import { OdbijanjeDialogComponent } from './odbijanje-dialog/odbijanje-dialog.co
   styleUrls: ['./zahtevi-za-registraciju.component.css']
 })
 export class ZahteviZaRegistracijuComponent implements OnInit {
-
+spinner : boolean;
   dataSource : User[];
   displayedColumns: string[] = ['id','ime','prezime','email','grad','drzava','telefon','akcije'];
   constructor(private dialog: MatDialog,private userService : UserService, private authService : AuthService, private snackBar : MatSnackBar) { }
@@ -23,20 +23,21 @@ export class ZahteviZaRegistracijuComponent implements OnInit {
     });
   }
   acceptClicked(user : User){
+    this.spinner = true;
     this.authService.sendLink(user).subscribe(data=> {
-      let temp : User[];
+      let temp : User[] = [];
       this.dataSource.map(u=>{
         if(u != user) {
           temp.push(u);
         }
       })
       this.dataSource = temp;
+      this.spinner = false;
       this.snackBar.open('Nalog prihvacen, link za aktivaciju je poslat.', 'U redu', { duration: 5000 });
     });
   }
 
   rejectClicked(user: User){
-
     const dialogRef = this.dialog.open(OdbijanjeDialogComponent, {
       data: { user: user}
     });
