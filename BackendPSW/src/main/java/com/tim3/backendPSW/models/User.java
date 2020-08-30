@@ -1,7 +1,5 @@
 package com.tim3.backendPSW.models;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,12 +9,11 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
 @Entity
 @Table(name = "users")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class User {
-	
+
 	/**
 	 * 
 	 */
@@ -25,38 +22,37 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "firstname", nullable = false)
 	private String firstname;
-	
+
 	@Column(name = "password", nullable = false)
 	private String password;
-	
+
 	@Column(name = "email", nullable = false, unique = true)
 	private String email;
-	
+
 	@Column(name = "lastname", nullable = false)
 	private String lastname;
-	
+
 	@Column(name = "address", nullable = false)
 	private String address;
-	
+
 	@Column(name = "city", nullable = false)
 	private String city;
-	
+
 	@Column(name = "country", nullable = false)
 	private String country;
-	
+
 	@Column(name = "phone", nullable = false)
 	private Long phone;
-	
+
 	@Column(name = "role", nullable = false)
 	private String role;
 
-
-	public User() {	
+	public User() {
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -140,6 +136,5 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
 
 }

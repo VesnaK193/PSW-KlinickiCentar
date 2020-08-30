@@ -18,6 +18,7 @@ import { PacijentComponent } from './components/pacijent/pacijent.component';
 import { OdbijanjeDialogComponent } from './components/admin-kc/zahtevi-za-registraciju/odbijanje-dialog/odbijanje-dialog.component';
 import { PacijentProfilComponent } from './components/pacijent/pacijent-profil/pacijent-profil.component';
 import { PacijentProfilDialogComponent } from './components/pacijent/pacijent-profil/pacijent-profil-dialog/pacijent-profil-dialog.component';
+import { KlinikaComponent } from './components/klinika/klinika.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { PacijentProfilDialogComponent } from './components/pacijent/pacijent-pr
     OdbijanjeDialogComponent,
     PacijentProfilComponent,
     PacijentProfilDialogComponent,
+    KlinikaComponent,
   ],
   imports: [
     BrowserModule,
