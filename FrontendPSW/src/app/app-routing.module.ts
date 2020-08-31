@@ -8,6 +8,8 @@ import { ZahteviZaRegistracijuComponent } from './components/admin-kc/zahtevi-za
 import { AccountActivatedComponent } from './components/register/account-activated/account-activated.component';
 import { PacijentComponent } from './components/pacijent/pacijent.component';
 import { PacijentProfilComponent } from './components/pacijent/pacijent-profil/pacijent-profil.component';
+import { KlinikaComponent } from './components/klinika/klinika.component';
+import { KlinikaLekariComponent } from './components/klinika/klinika-lekari/klinika-lekari.component';
 
 
 const routes: Routes = [
@@ -15,6 +17,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'accountActivated/:id', component: AccountActivatedComponent },
+  { path: 'klinika/:id', component: KlinikaComponent , children: [
+    { path: 'lekari', component: KlinikaLekariComponent },
+  ]},
   { path: 'adminkc', component: AdminKcComponent , children: [
     { path: 'zahtevi-za-registraciju', component: ZahteviZaRegistracijuComponent },
     ]

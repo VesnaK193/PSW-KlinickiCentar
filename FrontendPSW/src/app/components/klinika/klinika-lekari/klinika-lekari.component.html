@@ -1,0 +1,136 @@
+<div *ngIf="spinner==true" class="spinner-container-modal">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="container">
+  <div class="login-wrapper" style="width:90%">
+    <div class="paper back" style="padding: 0 0 50px 0;max-width:none;margin:0,8rem;opacity: 1;">
+      <h1 style="text-align: center;">Lekari</h1>
+      <hr>
+      <mat-card class="card-container">
+
+        <mat-card-content class="content-container" style="width: 100%;">
+          <div style="display:inline-flex;width: 100%;">
+            <div class="content-left">
+              <div class="flex-container">
+                <div *ngFor="let lekar of dataSource" class="flex-item">
+                  <h5 class="title-section-left">{{lekar.user.firstname}} {{lekar.user.lastname}}</h5>
+                  <!-- <button class="title-section-right" mat-raised-button color="warn"
+                                        style="border-radius: 10px;" (click)="onRezervisi(oglas)">Rezervisi</button> -->
+                  <hr>
+                  <p>
+                    <strong>Specijalizacija: </strong>{{lekar.specijalizacija}}
+                  </p>
+                  <p>
+                    <strong>Opis: </strong>{{lekar.opis}}
+                  </p>
+                  <p>
+                    <strong>Adresa: </strong>{{lekar.user.address}}
+                  </p>
+                  <p>
+                    <strong>Mesto: </strong>{{lekar.user.city}} {{lekar.user.country}}
+                  </p>
+                  <p>
+                    <strong>Email: </strong>{{lekar.user.email}}
+                  </p>
+                  <p>
+                    <strong>Telefon: </strong>{{lekar.user.phone}}
+                  </p>
+                  <!-- <button class="footer-section-left" mat-stroked-button color="warn"
+                                        style="border-radius: 10px;"
+                                        (click)="openDialogPrikazKomentara(oglas)">Komentari</button>
+                                    <h4 class="footer-section-right">{{oglas.cena}}$</h4> -->
+                </div>
+              </div>
+            </div>
+            <!-- DESNA STRANA -->
+            <div class="content-right">
+              <!-- SORTIRANJE -->
+              <div class="search-container">
+                <mat-grid-list cols="5" rowHeight="3:3">
+                  <mat-grid-tile [colspan]="3">
+                    <h2>Sortiranje</h2>
+                  </mat-grid-tile>
+                  <mat-grid-tile [colspan]="2">
+                  </mat-grid-tile>
+                </mat-grid-list>
+                <mat-form-field appearance="outline">
+                  <mat-label>Sortiraj po...</mat-label>
+                  <mat-icon matSuffix>sort</mat-icon>
+                  <mat-select [(ngModel)]="pomocniFilterModel" (ngModelChange)="sortData_Select($event)">
+                    <mat-option [value]="">-</mat-option>
+                    <mat-option *ngFor="let filtriranje of listaFiltriranja" [value]="filtriranje">
+                      {{filtriranje}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <!-- PRETRAGA -->
+              <div class="search-container">
+                <div style="min-height: 60px;">
+
+                  <mat-grid-list cols="5" rowHeight="3:3">
+                    <mat-grid-tile [colspan]="3">
+                      <h2>Pretraga</h2>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="1" style="min-height: 15px;">
+                      <div>
+                        <button mat-mini-fab style="background-color: rgb(107, 182, 138);" (click)="resetuj_Click()"
+                          aria-label="Resetuj">
+                          <mat-icon>autorenew</mat-icon>
+                        </button>
+                      </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="1" style="min-height: 15px;">
+                      <div>
+                        <button mat-mini-fab color="primary" (click)="onPretrazi_Click()" aria-label="Pretraga">
+                          <mat-icon>search</mat-icon>
+                        </button>
+                      </div>
+                    </mat-grid-tile>
+                  </mat-grid-list>
+                </div>
+
+                <hr style="margin:15px 0">
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Ime:</mat-label>
+                  <input matInput [(ngModel)]="pretraga.ime" placeholder="Unesite ime...">
+                  <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Prezime:</mat-label>
+                  <input matInput [(ngModel)]="pretraga.prezime" placeholder="Unesite prezime...">
+                  <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Napredna pretraga
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <hr>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Tip pregleda:</mat-label>
+                    <mat-icon matSuffix>medical_services</mat-icon>
+                    <mat-select [(ngModel)]="pretraga.tipPregleda" (ngModelChange)="proveriTipPregleda()">
+                      <mat-option [value]="">Svi tipovi</mat-option>
+                      <mat-option *ngFor="let tip of tipoviPregleda" [value]="tip">
+                        {{tip}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <hr>
+                </mat-expansion-panel>
+                
+                <button mat-raised-button color="primary" (click)="onPretrazi_Click()" color="primary"
+                  style="width: 100%;">Pretrazi
+                  <mat-icon>search</mat-icon></button>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -11,19 +11,19 @@ export class UserService {
 
   constructor(private httpClient: HttpClient, private routes: RoutesService) { }
 
-  public getUsers():Observable<User[]> {
+  public getUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>(this.routes.getAllUsers);
-}
+  }
 
-public getUsersOnHold():Observable<User[]> {
-  return this.httpClient.get<User[]>(this.routes.getAllUsersOnHold);
-}
+  public getUsersOnHold(): Observable<User[]> {
+    return this.httpClient.get<User[]>(this.routes.getAllUsersOnHold);
+  }
 
-public getUserById(id:number):Observable<User> {
-  return this.httpClient.post<User>(this.routes.getUserById,id);
-}
+  public getUserById(id: number): Observable<User> {
+    return this.httpClient.post<User>(this.routes.getUserById, id);
+  }
 
-public rejectRequest(user:User):Observable<User> {
-  return this.httpClient.post<User>(this.routes.rejectRequest,user);
-}
+  public rejectRequest(user: User): Observable<User> {
+    return this.httpClient.post<User>(this.routes.rejectRequest, user);
+  }
 }
