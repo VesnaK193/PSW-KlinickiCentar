@@ -34,4 +34,12 @@ export class RoutesService {
     get rejectRequest(): string{
         return this._app_url + 'rejectRequest';
     }
+
+    get getAllLekarsByKlinikaId(): string {
+        return this._app_url + 'getAllLekarsByKlinikaId';
+    }
+
+    get getSearchedLekars(): string {
+        return this._app_url + 'getSearchedLekars';
+    }
 }
