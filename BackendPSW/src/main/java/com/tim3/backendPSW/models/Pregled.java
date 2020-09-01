@@ -28,7 +28,7 @@ public class Pregled {
 	@JoinColumn(name = "termin_id")
 	private Termin termin;
 	
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "sala_id")
 	private Sala sala;
 
@@ -36,7 +36,7 @@ public class Pregled {
 	@JoinColumn(name = "lekar_id")
 	private Lekar lekar;
 
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinColumn(name = "pacijent_id")
 	private Pacijent pacijent;
 	
@@ -44,11 +44,6 @@ public class Pregled {
 	@JoinColumn(name = "tippregleda_id")
 	private TipPregleda tipPregleda;
 
-	@Column(name = "cena")
-	private double cena;
-	
-	@Column(name = "popust")
-	private int popust;
 
 	public Pregled() {
 		super();
@@ -167,22 +162,4 @@ public class Pregled {
 	private boolean sameAsOldTipPregleda(TipPregleda tipPregleda) {
 		return this.tipPregleda == null ? tipPregleda == null : this.tipPregleda.equals(tipPregleda);
 	}
-
-	public double getCena() {
-		return cena;
-	}
-
-	public void setCena(double cena) {
-		this.cena = cena;
-	}
-
-	public int getPopust() {
-		return popust;
-	}
-
-	public void setPopust(int popust) {
-		this.popust = popust;
-	}
-	
-	
 }

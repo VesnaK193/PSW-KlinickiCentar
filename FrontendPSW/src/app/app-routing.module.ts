@@ -10,6 +10,7 @@ import { PacijentComponent } from './components/pacijent/pacijent.component';
 import { PacijentProfilComponent } from './components/pacijent/pacijent-profil/pacijent-profil.component';
 import { KlinikaComponent } from './components/klinika/klinika.component';
 import { KlinikaLekariComponent } from './components/klinika/klinika-lekari/klinika-lekari.component';
+import { PacijentZakazivanjePregledaComponent } from './components/pacijent/pacijent-zakazivanje-pregleda/pacijent-zakazivanje-pregleda.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   },
   { path: 'pacijent', component: PacijentComponent , children: [
     { path: 'profil', component: PacijentProfilComponent },
+    { path: 'zakazliPregled', component: PacijentZakazivanjePregledaComponent },
     ]
   }
 ];

@@ -45,12 +45,12 @@ public class Klinika {
 	private Collection<Sala> sale = new ArrayList<Sala>();
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "klinika")
-	private Collection<TipPregleda> tipoviPregleda = new ArrayList<TipPregleda>();
-
-	@JsonIgnore
 	@OneToMany(mappedBy = "klinika", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<AdministratorKlinike> adminiKlinike = new HashSet<AdministratorKlinike>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "klinika", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Cenovnik> cenovnici = new HashSet<Cenovnik>();
 
 	public Klinika() {
 		super();
@@ -123,23 +123,22 @@ public class Klinika {
 		sale.remove(sala);
 		sala.setKlinika(null);
 	}
-
-	public Collection<TipPregleda> getTipoviPregleda() {
-		return tipoviPregleda;
+	public Collection<Cenovnik> getCenovnici() {
+		return cenovnici;
 	}
 
-	public void addTipPregleda(TipPregleda tipPregleda) {
-		if (this.tipoviPregleda.contains(tipPregleda))
+	public void addCenovnik(Cenovnik cenovnik) {
+		if (this.cenovnici.contains(cenovnik))
 			return;
-		tipoviPregleda.add(tipPregleda);
-		tipPregleda.setKlinika(this);
+		cenovnici.add(cenovnik);
+		cenovnik.setKlinika(this);
 	}
 
-	public void removeTipPregleda(TipPregleda tipPregleda) {
-		if (!tipoviPregleda.contains(tipPregleda))
+	public void removeCenovnik(Cenovnik cenovnik) {
+		if (!cenovnici.contains(cenovnik))
 			return;
-		tipoviPregleda.remove(tipPregleda);
-		tipPregleda.setKlinika(null);
+		cenovnici.remove(cenovnik);
+		cenovnik.setKlinika(null);
 	}
 
 	@JsonIgnore

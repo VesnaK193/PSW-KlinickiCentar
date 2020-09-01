@@ -25,11 +25,10 @@ public class Termin {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "termin", nullable = false)
-	private Date termin;
+	@Column(name = "datum", nullable = false)
+	private Date datum;
 	
 	@OneToOne
-	@JoinColumn(name = "pregled_id")
 	private Pregled pregled;
 	
 	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
@@ -48,12 +47,12 @@ public class Termin {
 		this.id = id;
 	}
 
-	public Date getTermin() {
-		return termin;
+	public Date getDatum() {
+		return datum;
 	}
 
-	public void setTermin(Date termin) {
-		this.termin = termin;
+	public void setDatum(Date datum) {
+		this.datum = datum;
 	}
 
 	public Pregled getPregled() {

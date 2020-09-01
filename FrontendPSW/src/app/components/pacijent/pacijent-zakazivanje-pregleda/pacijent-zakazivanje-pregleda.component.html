@@ -1,0 +1,59 @@
+<div *ngIf="spinner==true" class="spinner-container-modal">
+    <mat-spinner></mat-spinner>
+</div>
+<div class="container">
+    <div class="login-wrapper" style="width:90%">
+        <mat-card class="paper" style="width: 60%;max-width: 60%; margin-left:20%">
+            <h1 style="text-align: center;">Zakazi Pregled</h1>
+            <hr>
+            <!-- FORMA -->
+            <form class="form" (submit)="registerClick()">
+                <mat-card-content>
+                    <mat-form-field appearance="full-width">
+                        <mat-label>Tipovi Pregleda</mat-label>
+                        <mat-icon matSuffix>medical_services</mat-icon>
+                        <mat-select matInput [(ngModel)]="pregled.tipPregleda"
+                            (ngModelChange)="TipPregleda_Changed($event)" [ngModelOptions]="{standalone: true}">
+                            <mat-option [value]="">Svi tipovi</mat-option>
+                            <mat-option *ngFor="let tip of tipoviPregleda" [value]="tip">
+                                {{tip.naziv}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="full-width">
+                        <mat-label>Klinike</mat-label>
+                        <mat-icon matSuffix>business</mat-icon>
+                        <mat-select matInput [(ngModel)]="klinika" (ngModelChange)="Klinika_Changed($event)"
+                            [disabled]="!tipNotNull()" [ngModelOptions]="{standalone: true}">
+                            <mat-option [value]="">Sve klinike</mat-option>
+                            <mat-option *ngFor="let k of listaKlinika" [value]="k">
+                                {{k.naziv}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="full-width">
+                        <mat-label>Lekari</mat-label>
+                        <mat-icon matSuffix>business</mat-icon>
+                        <mat-select matInput [(ngModel)]="pregled.lekar" [disabled]="!klinikaNotNull()"
+                            [ngModelOptions]="{standalone: true}">
+                            <mat-option [value]="">Svi lekari</mat-option>
+                            <mat-option *ngFor="let l of listaLekara" [value]="l">
+                                {{l.user.firstname}} {{l.user.lastname}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="full-width">
+                        <mat-label>Termin:</mat-label>
+                        <mat-icon matSuffix>date_range</mat-icon>
+                        <input matInput [owlDateTimeFilter]="myFilter" [min]="startAt"
+                            [(ngModel)]="pregled.termin.datum" placeholder="Odaberite datum" [owlDateTime]="dt1"
+                            [owlDateTimeTrigger]="dt1" [ngModelOptions]="{standalone: true}">
+                        <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                    </mat-form-field>
+                </mat-card-content>
+                <button mat-raised-button color="primary" style="float:right" (click)="potvrdiZahtev()"
+                    [disabled]="!formValid()">Potvrdi</button>
+            </form>
+        </mat-card>
+    </div>
+</div>
