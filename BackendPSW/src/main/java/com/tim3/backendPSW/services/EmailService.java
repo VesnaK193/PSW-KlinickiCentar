@@ -15,6 +15,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import com.tim3.backendPSW.models.Pregled;
 import com.tim3.backendPSW.models.User;
 
 @Service
@@ -80,6 +81,40 @@ public class EmailService {
 						+ "<p style=\"padding-left:10px\">Vas zahtev za kreiranje naloga je odbijen.</p>"
 						+ "<p style=\"padding-left:10px\">Razlog odbijanja: "
 						+ "<p style=\"padding-left:10px; font-style: italic;\">\"" + u.getRole() + "\"</p>"
+								+ "<hr>"
+						+ "</div>"
+						+ "</body>"
+						+ "</html>";
+		
+		MimeMessage message = javaMailSender.createMimeMessage();
+		
+		MimeMessageHelper helper = new MimeMessageHelper(message, true);
+		helper.setTo(u.getEmail());
+		helper.setSubject("Klinicki Centar");
+		helper.setText(htmlView, true);
+		
+		javaMailSender.send(message);
+	}
+	
+	@Async
+	public void sendNotificationToAK(User u, Pregled p) throws MailException, InterruptedException, MessagingException{
+	
+		String htmlView = "<html>"
+						+ "<body>"
+						+ "<div style=\"width:100%\">"
+						+ "<div style=\"background:#3f51b5;text-align: center;height:50px;margin-bottom:50px\">"
+						+ "<h1 style=\"color:white;margin-top:15px;\">"
+						+ "Klinicki Centar Podrska"
+						+ "</h1>"
+						+ "</div>"
+						+ "<p style=\"padding-left:10px\">Postovani/na, " + u.getFirstname() + " " + u.getLastname() + ",</p>"
+								+ "<hr>"
+						+ "<p style=\"padding-left:10px\">Pristigao je novi zahtev za zakazivanje pregleda.</p>"
+						+ "<h3 style=\"padding-left:40px\">Zahtev: </h3>"
+						+ "<p style=\"padding-left:20px; font-style: italic;\">\"<strong style=\"color:#3f51b5\">Pacijent:</strong> " + p.getPacijent().getUser().getFirstname() + " " + p.getPacijent().getUser().getLastname() + "\"</p>"
+						+ "<p style=\"padding-left:20px; font-style: italic;\">\"<strong style=\"color:#3f51b5\">Tip pregleda:</strong> " + p.getTipPregleda().getNaziv() + "\"</p>"
+						+ "<p style=\"padding-left:20px; font-style: italic;\">\"<strong style=\"color:#3f51b5\">Lekar:</strong> " + p.getLekar().getUser().getFirstname() + " " + p.getLekar().getUser().getLastname() + "\"</p>"
+						+ "<p style=\"padding-left:20px; font-style: italic;\">\"<strong style=\"color:#3f51b5\">Datum:</strong> " + p.getTermin().getDatum() + "\"</p>"
 								+ "<hr>"
 						+ "</div>"
 						+ "</body>"

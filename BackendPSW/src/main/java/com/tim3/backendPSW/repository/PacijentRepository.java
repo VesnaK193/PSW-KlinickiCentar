@@ -6,4 +6,5 @@ import com.tim3.backendPSW.models.Pacijent;
 
 public interface PacijentRepository extends JpaRepository<Pacijent, Long>{
 
+	Pacijent getOneByUserId(Long id);
 }

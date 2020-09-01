@@ -28,7 +28,7 @@ public class Sala {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "naziv", nullable = false)
+	@Column(name = "naziv")
 	private String naziv;
 
 	@Column(name = "brojsale")
@@ -39,7 +39,7 @@ public class Sala {
 	private Klinika klinika;
 	
 	@JsonIgnore
-	@OneToMany//(mappedBy = "sala", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany()
 	private Set<Pregled> pregledi = new HashSet<Pregled>();
 
 	public Sala() {

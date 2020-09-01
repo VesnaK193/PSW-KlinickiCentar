@@ -33,14 +33,14 @@ public class TipPregleda {
 
 	@Column(name = "opis")
 	private String opis;
-
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "klinika_id")
-	private Klinika klinika;
 	
 	@JsonIgnore
 	@OneToMany//(mappedBy = "tippregleda", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Pregled> pregledi = new HashSet<Pregled>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "klinika", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Cenovnik> cenovnici = new HashSet<Cenovnik>();
 
 	public TipPregleda() {
 		super();
@@ -69,28 +69,6 @@ public class TipPregleda {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-
-	public Klinika getKlinika() {
-		return klinika;
-	}
-
-	public void setKlinika(Klinika klinika) {
-		if (sameAsOldKlinika(klinika))
-			return;
-		// set new owner
-		Klinika oldKlinika = this.klinika;
-		this.klinika = klinika;
-		// remove from the old owner
-		if (oldKlinika != null)
-			oldKlinika.removeTipPregleda(this);
-		// set myself into new owner
-		if (klinika != null)
-			klinika.addTipPregleda(this);
-	}
-
-	private boolean sameAsOldKlinika(Klinika klinika) {
-		return this.klinika == null ? klinika == null : this.klinika.equals(klinika);
-	}
 	
 	public Collection<Pregled> getPregledi() {
 		return pregledi;
@@ -108,5 +86,22 @@ public class TipPregleda {
 			return;
 		pregledi.remove(pregled);
 		pregled.setTipPregleda(null);
+	}
+	public Collection<Cenovnik> getCenovnici() {
+		return cenovnici;
+	}
+
+	public void addCenovnik(Cenovnik cenovnik) {
+		if (this.cenovnici.contains(cenovnik))
+			return;
+		cenovnici.add(cenovnik);
+		cenovnik.setTipPregleda(this);
+	}
+
+	public void removeCenovnik(Cenovnik cenovnik) {
+		if (!cenovnici.contains(cenovnik))
+			return;
+		cenovnici.remove(cenovnik);
+		cenovnik.setTipPregleda(null);
 	}
 }

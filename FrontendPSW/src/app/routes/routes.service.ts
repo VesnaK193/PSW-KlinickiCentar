@@ -39,7 +39,23 @@ export class RoutesService {
         return this._app_url + 'getAllLekarsByKlinikaId';
     }
 
+    get getAllKlinikaByTipPregledaId(): string {
+        return this._app_url + 'getAllKlinikaByTipPregledaId';
+    }
+
     get getSearchedLekars(): string {
         return this._app_url + 'getSearchedLekars';
+    }
+
+    get getAllTipovePregleda(): string {
+        return this._app_url + 'getAllTipovePregleda';
+    }
+
+    get getPacijentByUserId(): string {
+        return this._app_url + 'getPacijentByUserId';
+    }
+
+    get postExaminationRequest(): string {
+        return this._app_url + 'postExaminationRequest';
     }
 }
