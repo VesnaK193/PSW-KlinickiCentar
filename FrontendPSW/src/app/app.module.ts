@@ -24,6 +24,7 @@ import { KlinikaLekariComponent } from './components/klinika/klinika-lekari/klin
 import { PacijentZakazivanjePregledaComponent } from './components/pacijent/pacijent-zakazivanje-pregleda/pacijent-zakazivanje-pregleda.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { StarRatingModule } from 'angular-star-rating';
+import { KlinikaPredefinisaniPreglediComponent } from './components/klinika/klinika-predefinisani-pregledi/klinika-predefinisani-pregledi.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { StarRatingModule } from 'angular-star-rating';
     LekarComponent,
     KlinikaLekariComponent,
     PacijentZakazivanjePregledaComponent,
+    KlinikaPredefinisaniPreglediComponent,
   ],
   imports: [
     BrowserModule,

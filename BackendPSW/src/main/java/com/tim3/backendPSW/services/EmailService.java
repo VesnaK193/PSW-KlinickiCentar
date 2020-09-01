@@ -129,4 +129,38 @@ public class EmailService {
 		
 		javaMailSender.send(message);
 	}
+	
+	@Async
+	public void sendQuickReservNotification(Pregled p) throws MailException, InterruptedException, MessagingException{
+	
+		String htmlView = "<html>"
+						+ "<body>"
+						+ "<div style=\"width:100%\">"
+						+ "<div style=\"background:#3f51b5;text-align: center;height:50px;margin-bottom:50px\">"
+						+ "<h1 style=\"color:white;margin-top:15px;\">"
+						+ "Klinicki Centar Podrska"
+						+ "</h1>"
+						+ "</div>"
+						+ "<p style=\"padding-left:10px\">Postovani/na, " + p.getPacijent().getUser().getFirstname() + " " + p.getPacijent().getUser().getLastname() + ",</p>"
+								+ "<hr>"
+						+ "<p style=\"padding-left:10px\">Uspesno ste rezervisali pregled.</p>"
+						+ "<h3 style=\"padding-left:40px\">Pregled: </h3>"
+						+ "<p style=\"padding-left:20px; font-style: italic;\">\"<strong style=\"color:#3f51b5\">Tip pregleda:</strong> " + p.getTipPregleda().getNaziv() + "\"</p>"
+						+ "<p style=\"padding-left:20px; font-style: italic;\">\"<strong style=\"color:#3f51b5\">Sala:</strong> " + p.getSala().getNaziv() +", " +p.getSala().getBrojsale() + "\"</p>"
+						+ "<p style=\"padding-left:20px; font-style: italic;\">\"<strong style=\"color:#3f51b5\">Lekar:</strong> " + p.getLekar().getUser().getFirstname() + " " + p.getLekar().getUser().getLastname() + "\"</p>"
+						+ "<p style=\"padding-left:20px; font-style: italic;\">\"<strong style=\"color:#3f51b5\">Datum:</strong> " + p.getTermin().getDatum() + "\"</p>"
+								+ "<hr>"
+						+ "</div>"
+						+ "</body>"
+						+ "</html>";
+		
+		MimeMessage message = javaMailSender.createMimeMessage();
+		
+		MimeMessageHelper helper = new MimeMessageHelper(message, true);
+		helper.setTo(p.getPacijent().getUser().getEmail());
+		helper.setSubject("Klinicki Centar");
+		helper.setText(htmlView, true);
+		
+		javaMailSender.send(message);
+	}
 }
