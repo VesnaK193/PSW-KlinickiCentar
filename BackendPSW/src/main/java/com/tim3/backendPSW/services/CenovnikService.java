@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.tim3.backendPSW.models.Cenovnik;
 import com.tim3.backendPSW.models.Klinika;
+import com.tim3.backendPSW.models.Pregled;
 import com.tim3.backendPSW.repository.CenovnikRepository;
 
 @Service
@@ -27,5 +28,19 @@ public class CenovnikService {
 			klinike.add(c.getKlinika());
 		}
 		return klinike;
+	}
+
+	public Cenovnik getCenaByKlinikaAndTip(Pregled pregled) {
+		List<Cenovnik> cenovnici = cenovnikRepository.findAll();
+		Cenovnik cenaPregleda = new Cenovnik();
+		for(Cenovnik c : cenovnici) {
+			boolean tipEquals = pregled.getTipPregleda().getId() == c.getTipPregleda().getId();
+			boolean klinikaEquals = pregled.getLekar().getKlinika().getId() == c.getKlinika().getId();
+			if(tipEquals && klinikaEquals) {
+				cenaPregleda = c;
+				break;
+			}
+		}
+		return cenaPregleda;
 	}
 }

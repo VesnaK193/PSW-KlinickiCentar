@@ -1,5 +1,6 @@
 package com.tim3.backendPSW.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -33,7 +34,8 @@ public class PregledService {
 	
 	public Pregled savePregledRequest(Pregled pregled) {
 		Termin newTermin = pregled.getTermin();
-		pregled.setSala(new Sala());
+		newTermin.setRadniKalendar(pregled.getLekar().getRadniKalendar());
+		pregled.setSala(null);
 		pregled.setTermin(terminRepository.save(newTermin));
 		
 		Pregled newPregled = pregledRepository.saveAndFlush(pregled);
@@ -55,6 +57,35 @@ public class PregledService {
 		return newPregled;
 		
 		
+	}
+
+	public List<Pregled> getAllPredefinisaniPreglediKlinike(Long id) {
+		List<Pregled> sviPregledi = pregledRepository.findAll();
+		List<Pregled> predefinisaniPregledi = new ArrayList<>();
+		for(Pregled pregled : sviPregledi) {
+			boolean pripadaKlinici = pregled.getLekar().getKlinika().getId() == id;
+			boolean predefinisanPregled = pregled.getPacijent() == null;
+			if(pripadaKlinici && predefinisanPregled)
+				predefinisaniPregledi.add(pregled);
+		}
+		return predefinisaniPregledi;
+	}
+
+	public Pregled savePregled(Pregled pregled) {
+		Pregled newPregled = pregledRepository.save(pregled);
+		try {
+			emailService.sendQuickReservNotification(newPregled);
+		} catch (MailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return newPregled;
 	}
 
 }

@@ -11,6 +11,7 @@ import { PacijentProfilComponent } from './components/pacijent/pacijent-profil/p
 import { KlinikaComponent } from './components/klinika/klinika.component';
 import { KlinikaLekariComponent } from './components/klinika/klinika-lekari/klinika-lekari.component';
 import { PacijentZakazivanjePregledaComponent } from './components/pacijent/pacijent-zakazivanje-pregleda/pacijent-zakazivanje-pregleda.component';
+import { KlinikaPredefinisaniPreglediComponent } from './components/klinika/klinika-predefinisani-pregledi/klinika-predefinisani-pregledi.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'accountActivated/:id', component: AccountActivatedComponent },
   { path: 'klinika/:id', component: KlinikaComponent , children: [
     { path: 'lekari', component: KlinikaLekariComponent },
+    { path: 'predefinisaniPregledi', component: KlinikaPredefinisaniPreglediComponent },
   ]},
   { path: 'adminkc', component: AdminKcComponent , children: [
     { path: 'zahtevi-za-registraciju', component: ZahteviZaRegistracijuComponent },

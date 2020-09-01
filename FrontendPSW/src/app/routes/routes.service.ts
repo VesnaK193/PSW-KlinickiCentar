@@ -55,7 +55,19 @@ export class RoutesService {
         return this._app_url + 'getPacijentByUserId';
     }
 
+    get getAllPredefinisaniPreglediKlinike(): string {
+        return this._app_url + 'getAllPredefinisaniPreglediKlinike';
+    }
+
     get postExaminationRequest(): string {
         return this._app_url + 'postExaminationRequest';
+    }
+
+    get getCenaByKlinikaAndTip(): string {
+        return this._app_url + 'getCenaByKlinikaAndTip';
+    }
+
+    get postExamination(): string {
+        return this._app_url + 'postExamination';
     }
 }

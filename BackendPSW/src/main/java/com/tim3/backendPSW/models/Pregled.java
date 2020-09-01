@@ -28,7 +28,7 @@ public class Pregled {
 	@JoinColumn(name = "termin_id")
 	private Termin termin;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "sala_id")
 	private Sala sala;
 
@@ -36,7 +36,7 @@ public class Pregled {
 	@JoinColumn(name = "lekar_id")
 	private Lekar lekar;
 
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "pacijent_id")
 	private Pacijent pacijent;
 	

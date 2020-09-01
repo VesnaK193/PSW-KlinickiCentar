@@ -8,10 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tim3.backendPSW.models.Cenovnik;
 import com.tim3.backendPSW.models.Klinika;
+import com.tim3.backendPSW.models.Pregled;
 import com.tim3.backendPSW.services.CenovnikService;
 
 @RestController
@@ -35,5 +38,14 @@ public class CenovnikController {
 		
 		return new ResponseEntity<List<Klinika>>(klinike, HttpStatus.OK);
 	}
+	
+	@PostMapping("/getCenaByKlinikaAndTip")
+	public ResponseEntity<Cenovnik> getCenaByKlinikaAndTip(@RequestBody Pregled pregled){
+		Cenovnik cena = cenovnikService.getCenaByKlinikaAndTip(pregled);
+		
+		return new ResponseEntity<Cenovnik>(cena, HttpStatus.OK);
+	}
+	
+	
 
 }

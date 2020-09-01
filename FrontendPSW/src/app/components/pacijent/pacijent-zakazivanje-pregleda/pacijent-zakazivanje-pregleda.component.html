@@ -7,7 +7,7 @@
             <h1 style="text-align: center;">Zakazi Pregled</h1>
             <hr>
             <!-- FORMA -->
-            <form class="form" (submit)="registerClick()">
+            <form class="form">
                 <mat-card-content>
                     <mat-form-field appearance="full-width">
                         <mat-label>Tipovi Pregleda</mat-label>
@@ -51,7 +51,7 @@
                         <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
                     </mat-form-field>
                 </mat-card-content>
-                <button mat-raised-button color="primary" style="float:right" (click)="potvrdiZahtev()"
+                <button mat-raised-button color="primary" type="button" style="float:right" (click)="potvrdiZahtev()"
                     [disabled]="!formValid()">Potvrdi</button>
             </form>
         </mat-card>
