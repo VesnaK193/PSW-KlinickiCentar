@@ -18,32 +18,32 @@ export class LoginComponent implements OnInit {
   }
 
   loginClick(): void {
-    console.log(this.emailField + ", " + this.passwordField);
-    var user: User = new User();
+    console.log(this.emailField + ', ' + this.passwordField);
+    const user: User = new User();
     user.email = this.emailField;
     user.password = this.passwordField;
     this.authService.login(user).subscribe(data => {
-      let userString = JSON.stringify(data);
+      const userString = JSON.stringify(data);
       switch (data.role) {
-        case "adminKC":
-          localStorage.setItem("loggedUser", userString);
+        case 'adminKC':
+          localStorage.setItem('loggedUser', userString);
           this.router.navigateByUrl('/adminkc');
           break;
-        case "pacijent":
-          localStorage.setItem("loggedUser", userString);
+        case 'pacijent':
+          localStorage.setItem('loggedUser', userString);
           this.router.navigateByUrl('/pacijent');
           break;
-        case "lekar":
-          localStorage.setItem("loggedUser", userString);
+        case 'lekar':
+          localStorage.setItem('loggedUser', userString);
           this.router.navigateByUrl('/lekar');
           break;
-        case "medicinskaSestra":
-          localStorage.setItem("loggedUser", userString);
+        case 'medicinskaSestra':
+          localStorage.setItem('loggedUser', userString);
           this.router.navigateByUrl('/medicinskasestra');
           break;
-        case "adminKlinike":
-          localStorage.setItem("loggedUser", userString);
-          this.router.navigateByUrl('/adminklinike');
+        case 'adminK':
+          localStorage.setItem('loggedUser', userString);
+          this.router.navigateByUrl('/adminK');
           break;
         default:
           break;

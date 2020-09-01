@@ -10,8 +10,14 @@ import { PacijentComponent } from './components/pacijent/pacijent.component';
 import { PacijentProfilComponent } from './components/pacijent/pacijent-profil/pacijent-profil.component';
 import { KlinikaComponent } from './components/klinika/klinika.component';
 import { KlinikaLekariComponent } from './components/klinika/klinika-lekari/klinika-lekari.component';
+// tslint:disable-next-line:max-line-length
 import { PacijentZakazivanjePregledaComponent } from './components/pacijent/pacijent-zakazivanje-pregleda/pacijent-zakazivanje-pregleda.component';
+// tslint:disable-next-line:max-line-length
 import { KlinikaPredefinisaniPreglediComponent } from './components/klinika/klinika-predefinisani-pregledi/klinika-predefinisani-pregledi.component';
+import {AdminKComponent} from './components/admin-k/admin-k.component';
+import {AdminKProfilComponent} from './components/admin-k/admin-k-profil/admin-k-profil.component';
+import {LekarComponent} from './components/lekar/lekar.component';
+import {LekarProfilComponent} from './components/lekar/lekar-profil/lekar-profil.component';
 
 
 const routes: Routes = [
@@ -30,6 +36,14 @@ const routes: Routes = [
   { path: 'pacijent', component: PacijentComponent , children: [
     { path: 'profil', component: PacijentProfilComponent },
     { path: 'zakazliPregled', component: PacijentZakazivanjePregledaComponent },
+    ]
+  },
+  { path: 'adminK', component: AdminKComponent, children: [
+      {path: 'profil', component: AdminKProfilComponent},
+    ]
+  },
+  { path: 'lekar', component: LekarComponent, children: [
+      {path: 'profil', component: LekarProfilComponent},
     ]
   }
 ];
