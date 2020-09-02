@@ -9,15 +9,15 @@ import { PacijentProfilDialogComponent } from './pacijent-profil-dialog/pacijent
   styleUrls: ['./pacijent-profil.component.css']
 })
 export class PacijentProfilComponent implements OnInit {
-  loggedUser : User;
+  loggedUser: User;
   constructor(private dialog: MatDialog) {
-    this.loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+    this.loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
    }
 
   ngOnInit() {
   }
 
-  editDialog(){
+  editDialog() {
 
     const dialogRef = this.dialog.open(PacijentProfilDialogComponent, {
       data: { user: this.loggedUser}
