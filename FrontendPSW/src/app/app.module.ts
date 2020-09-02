@@ -33,6 +33,7 @@ import { AdminKProfilComponent } from './components/admin-k/admin-k-profil/admin
 import { AdminKProfilDijalogComponent } from './components/admin-k/admin-k-profil/admin-k-profil-dijalog/admin-k-profil-dijalog.component';
 import { LekarProfilComponent } from './components/lekar/lekar-profil/lekar-profil.component';
 import { LekarProfilDijalogComponent } from './components/lekar/lekar-profil/lekar-profil-dijalog/lekar-profil-dijalog.component';
+import { AdminKProfilKlinikeComponent } from './components/admin-k/admin-k-profil-klinike/admin-k-profil-klinike.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { LekarProfilDijalogComponent } from './components/lekar/lekar-profil/lek
     AdminKProfilDijalogComponent,
     LekarProfilComponent,
     LekarProfilDijalogComponent,
+    AdminKProfilKlinikeComponent,
   ],
   imports: [
     BrowserModule,
