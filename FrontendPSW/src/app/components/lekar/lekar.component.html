@@ -1,1 +1,10 @@
+<mat-toolbar color="primary" class="app-header">
+  <div><a href="/" class="navlogo">Klinicki Centar</a></div>
+  <span class="nav-tool-items">
+      <a mat-button routerLink="profil" routerLinkActive="active">Profil</a>
+      <a mat-button>Profil Klinike</a>
+      <a mat-button mat-raised-button routerLink="/login" (click)="logout()" routerLinkActive="active">Odjava</a>
+    </span>
+</mat-toolbar>
+<router-outlet></router-outlet>
 <p>lekar works!</p>
