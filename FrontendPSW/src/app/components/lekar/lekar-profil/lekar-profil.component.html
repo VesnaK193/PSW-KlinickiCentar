@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="login-wrapper" style="width:90%">
+    <!-- <div class="paper back" style="padding: 0 0 50px 0;max-width:none;margin:0,8rem">
+        <h2 style="text-align: center;">Moj Profil</h2>
+        <hr>
+    </div> -->
+    <mat-card class="paper" style="width: 60%;max-width: 60%; margin-left:20%">
+      <mat-card-header>
+        <mat-grid-list cols="6" rowHeight="4:2">
+          <!-- Razmak -->
+          <mat-grid-tile [colspan]="2" [rowspan]="1">
+          </mat-grid-tile>
+          <!-- Naziv klinike -->
+          <mat-grid-tile [colspan]="2" [rowspan]="1">
+            <mat-card-title style="font-size: 24px;">{{loggedUser.firstname}} {{loggedUser.lastname}}
+            </mat-card-title>
+          </mat-grid-tile>
+          <!-- Razmak -->
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+          </mat-grid-tile>
+          <!-- Edit icon-->
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+                        <span class="nav-tool-items">
+                            <a mat-button (click)="editDialog()">
+                                <i class="material-icons">edit</i>
+                            </a>
+                        </span>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-tab-group style="margin-top: 10px;margin-bottom: 50px;">
+          <!--Osnovni podaci o lekaru-->
+          <mat-tab label="O meni">
+            <p style="font-size: 18px;margin-top: 50px;">Jedinstveni broj: {{loggedUser.id}}</p>
+            <p style="font-size: 18px;">Email: {{loggedUser.email}}</p>
+            <p style="font-size: 18px;">Adresa: {{loggedUser.address}}</p>
+            <p style="font-size: 18px;">Grad: {{loggedUser.city}}</p>
+            <p style="font-size: 18px;">Drzava: {{loggedUser.country}}</p>
+            <p style="font-size: 18px;">Telefon: {{loggedUser.phone}}</p>
+          </mat-tab>
+        </mat-tab-group>
+        <hr>
+
+        <a style="float:right;" mat-flat-button color="warn">
+          Promeni Lozinku
+        </a>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>
