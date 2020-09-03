@@ -43,6 +43,14 @@ export class RoutesService {
         return this._app_url + 'getAllKlinikaByTipPregledaId';
     }
 
+    get getAllKlinikas(): string {
+        return this._app_url + 'getAllKlinikas';
+    }
+
+    get getSearchedKlinike(): string {
+        return this._app_url + 'getSearchedKlinike';
+    }
+
     get getSearchedLekars(): string {
         return this._app_url + 'getSearchedLekars';
     }

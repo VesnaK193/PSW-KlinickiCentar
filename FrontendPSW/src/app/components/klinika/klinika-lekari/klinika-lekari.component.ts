@@ -26,6 +26,7 @@ export class KlinikaLekariComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private lekarService: LekarService) {
     this.id = +this.route.parent.snapshot.paramMap.get("id");
+    this.pretraga.idKlinike = this.id;
   }
 
   ngOnInit() {
