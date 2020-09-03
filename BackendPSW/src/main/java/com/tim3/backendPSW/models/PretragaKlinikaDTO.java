@@ -33,6 +33,13 @@ public class PretragaKlinikaDTO {
 		this.naziv = naziv;
 	}
 	
-	
+	public PretragaKlinikaDTO(TipPregleda tipPregleda, Date termin,String adresa,String naziv) {
+		super();
+		this.tipPregleda = tipPregleda;
+		this.termin = termin;
+		this.adresa = adresa;
+		this.naziv = naziv;
+		
+	}
 
 }
