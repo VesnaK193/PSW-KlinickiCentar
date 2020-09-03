@@ -1,0 +1,123 @@
+<div *ngIf="spinner==true" class="spinner-container-modal">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div class="container">
+    <div class="login-wrapper" style="width:90%">
+      <div class="paper back" style="padding: 0 0 50px 0;max-width:none;margin:0,8rem;opacity: 1;">
+        <h1 style="text-align: center;">Klinike</h1>
+        <hr>
+        <mat-card class="card-container">
+  
+          <mat-card-content class="content-container" style="width: 100%;">
+            <div style="display:inline-flex;width: 100%;">
+              <div class="content-left">
+                <div class="flex-container">
+                  <div *ngFor="let kc of dataSource" class="flex-item">
+                    <h5 class="title-section-left">{{kc.klinika.naziv}}</h5>
+                    <hr>
+                    <p>
+                      <strong>Opis: </strong>{{kc.klinika.opis}}
+                    </p>
+                    <p>
+                      <strong>Adresa: </strong>{{kc.klinika.adresa}}
+                    </p>
+                    <h4 *ngIf="!popustActive(kc.popust) && cenaNotNull(kc.cena)" class="footer-section-right" style="margin-right: 1em !important">{{kc.cena}}$</h4>
+                    <h4 *ngIf="popustActive(kc.popust) && cenaNotNull(kc.cena)" class="footer-section-right" style="font-size: 18px; text-decoration: line-through;">{{kc.cena}}$</h4>
+                    <h4 *ngIf="popustActive(kc.popust) && cenaNotNull(kc.cena)" class="footer-section-right" style="color: rgb(243 85 74) ">{{getCenaPopust(kc.cena,kc.popust)}}$</h4>
+                  </div>
+                </div>
+              </div>
+              <!-- DESNA STRANA -->
+              <div class="content-right">
+                <!-- SORTIRANJE -->
+                <div class="search-container">
+                  <mat-grid-list cols="5" rowHeight="3:3">
+                    <mat-grid-tile [colspan]="3">
+                      <h2>Sortiranje</h2>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2">
+                    </mat-grid-tile>
+                  </mat-grid-list>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Sortiraj po...</mat-label>
+                    <mat-icon matSuffix>sort</mat-icon>
+                    <mat-select [(ngModel)]="pomocniFilterModel" (ngModelChange)="sortData_Select($event)">
+                      <mat-option [value]="">-</mat-option>
+                      <mat-option *ngFor="let filtriranje of listaFiltriranja" [value]="filtriranje">
+                        {{filtriranje}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <!-- PRETRAGA -->
+                <div class="search-container">
+                  <div style="min-height: 60px;">
+  
+                    <mat-grid-list cols="5" rowHeight="3:3">
+                      <mat-grid-tile [colspan]="3">
+                        <h2>Pretraga</h2>
+                      </mat-grid-tile>
+                      <mat-grid-tile [colspan]="1" style="min-height: 15px;">
+                        <div>
+                          <button mat-mini-fab style="background-color: rgb(107, 182, 138);" (click)="resetuj_Click()"
+                            aria-label="Resetuj">
+                            <mat-icon>autorenew</mat-icon>
+                          </button>
+                        </div>
+                      </mat-grid-tile>
+                      <mat-grid-tile [colspan]="1" style="min-height: 15px;">
+                        <div>
+                          <button mat-mini-fab color="primary" (click)="onPretrazi_Click()" aria-label="Pretraga" [disabled]="!formValid()">
+                            <mat-icon>search</mat-icon>
+                          </button>
+                        </div>
+                      </mat-grid-tile>
+                    </mat-grid-list>
+                  </div>
+  
+                  <hr style="margin:15px 0">
+                  <mat-form-field appearance="outline">
+                      <mat-label>Termin:</mat-label>
+                      <mat-icon matSuffix>date_range</mat-icon>
+                      <input matInput [min]="startAt"
+                          [(ngModel)]="pretraga.termin" placeholder="Odaberite datum i vreme" [owlDateTime]="dt1"
+                          [owlDateTimeTrigger]="dt1" [ngModelOptions]="{standalone: true}" required>
+                      <owl-date-time #dt1></owl-date-time>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Tip pregleda:</mat-label>
+                    <mat-icon matSuffix>medical_services</mat-icon>
+                    <mat-select [(ngModel)]="pretraga.tipPregleda" required>
+                      <mat-option [value]="">Svi tipovi</mat-option>
+                      <mat-option *ngFor="let tip of tipoviPregleda" [value]="tip">
+                        {{tip.naziv}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+  
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Napredna pretraga
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <hr>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Naziv:</mat-label>
+                      <input matInput [(ngModel)]="pretraga.naziv" placeholder="Unesite naziv">
+                      <mat-icon matSuffix>person</mat-icon>
+                    </mat-form-field>
+                    <hr>
+                  </mat-expansion-panel>
+                  
+                  <button mat-raised-button color="primary" (click)="onPretrazi_Click()" color="primary"
+                    style="width: 100%;"  [disabled]="!formValid()">Pretrazi
+                    <mat-icon>search</mat-icon></button>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>

@@ -18,6 +18,7 @@ import {AdminKComponent} from './components/admin-k/admin-k.component';
 import {AdminKProfilComponent} from './components/admin-k/admin-k-profil/admin-k-profil.component';
 import {LekarComponent} from './components/lekar/lekar.component';
 import {LekarProfilComponent} from './components/lekar/lekar-profil/lekar-profil.component';
+import { PacijentKlinikeComponent } from './components/pacijent/pacijent-klinike/pacijent-klinike.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
   },
   { path: 'pacijent', component: PacijentComponent , children: [
     { path: 'profil', component: PacijentProfilComponent },
+    { path: 'klinike', component: PacijentKlinikeComponent },
     { path: 'zakazliPregled', component: PacijentZakazivanjePregledaComponent },
     ]
   },

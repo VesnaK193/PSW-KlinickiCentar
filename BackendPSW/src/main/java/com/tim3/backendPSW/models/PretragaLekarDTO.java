@@ -3,10 +3,18 @@ package com.tim3.backendPSW.models;
 import java.util.Date;
 
 public class PretragaLekarDTO {
+	private Long idKlinike;
 	private String ime;
 	private String prezime;
 	private Date termin;
 	private Long tipPregleda;
+	
+	public Long getIdKlinike() {
+		return idKlinike;
+	}
+	public void setIdKlinike(Long idKlinike) {
+		this.idKlinike = idKlinike;
+	}
 	public String getIme() {
 		return ime;
 	}

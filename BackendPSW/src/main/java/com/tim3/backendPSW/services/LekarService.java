@@ -25,7 +25,7 @@ public class LekarService {
 	}
 
 	public List<Lekar> getSearchedLekars(PretragaLekarDTO pretraga) {
-		List<Lekar> lekari = lekarRepository.findAll();
+		List<Lekar> lekari = lekarRepository.findAllByKlinikaId(pretraga.getIdKlinike());
 		List<Lekar> pretrazeni = new ArrayList<>();
 		for(Lekar lekar:lekari) {
 			Boolean firstnameContains = !pretraga.getIme().isEmpty()?lekar.getUser().getFirstname().toLowerCase().contains(pretraga.getIme().toLowerCase()):true;
