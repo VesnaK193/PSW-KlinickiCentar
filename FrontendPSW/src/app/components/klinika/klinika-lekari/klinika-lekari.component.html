@@ -102,26 +102,6 @@
                   <input matInput [(ngModel)]="pretraga.prezime" placeholder="Unesite prezime...">
                   <mat-icon matSuffix>person</mat-icon>
                 </mat-form-field>
-
-                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      Napredna pretraga
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <hr>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Tip pregleda:</mat-label>
-                    <mat-icon matSuffix>medical_services</mat-icon>
-                    <mat-select [(ngModel)]="pretraga.tipPregleda" (ngModelChange)="proveriTipPregleda()">
-                      <mat-option [value]="">Svi tipovi</mat-option>
-                      <mat-option *ngFor="let tip of tipoviPregleda" [value]="tip">
-                        {{tip}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  <hr>
-                </mat-expansion-panel>
                 
                 <button mat-raised-button color="primary" (click)="onPretrazi_Click()" color="primary"
                   style="width: 100%;">Pretrazi

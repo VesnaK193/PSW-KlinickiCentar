@@ -9,6 +9,7 @@ import { TipPregledaService } from 'src/app/services/tip-pregleda.service';
 import { KlinikaCena } from 'src/app/models/klinika-cena.model';
 import { PregledService } from 'src/app/services/pregled.service';
 import { Pregled } from 'src/app/models/pregled.model';
+import { Lekar } from 'src/app/models/lekar.model';
 
 @Component({
   selector: 'app-pacijent-klinike',
@@ -57,23 +58,29 @@ export class PacijentKlinikeComponent implements OnInit {
 
   onPretrazi_Click() {
     this.klinikaService.getSearchedKlinike(this.pretraga).subscribe(data => {
+      console.log(data[0]);
       this.formatDataSource(data);
     });
   }
 
   formatDataSource(klinike : Klinika[]){
+    let kcList : KlinikaCena[] = [];
     klinike.map(klinika => {
       let pregled : Pregled = new Pregled();
       pregled.tipPregleda = this.pretraga.tipPregleda;
-      pregled.lekar.klinika =klinika;
+      let lekar : Lekar = new Lekar();
+      lekar.klinika = klinika
+      pregled.lekar =lekar;
 
       this.pregledService.getCenaByKlinikaAndTip(pregled).subscribe(cena=>{
         let klinikaCena : KlinikaCena = new KlinikaCena();
         klinikaCena.klinika = klinika;
         klinikaCena.cena = cena.cena;
         klinikaCena.popust = cena.popust;
+        kcList.push(klinikaCena);
       })
     })
+    this.dataSource = kcList;
   }
 
   formValid(){
@@ -91,49 +98,49 @@ export class PacijentKlinikeComponent implements OnInit {
   getCenaPopust(cena:number, popust:number){
     return cena*((100-popust)/100);
   }
-  // sortData_Select(odabranaOpcija) {
-  //   let sort: Sort;
-  //   switch (odabranaOpcija) {
-  //     case "Po nazivu uzlazno":
-  //       sort = { "active": "naziv", "direction": "asc" };
-  //       break;
-  //     case "Po nazivu silazno":
-  //       sort = { "active": "naziv", "direction": "desc" };
-  //       break;
-  //     case "Po ceni silazno":
-  //       sort = { "active": "cena", "direction": "desc" };
-  //       break;
-  //     case "Po ceni uzlazno":
-  //       sort = { "active": "cena", "direction": "asc" };
-  //       break;
-  //     case "Po oceni silazno":
-  //       sort = { "active": "ocena", "direction": "desc" };
-  //       break;
-  //     case "Po oceni uzlazno":
-  //       sort = { "active": "ocena", "direction": "asc" };
-  //       break;
-  //     default:
-  //       this.dataSource = this.sviLekari;
-  //       return;
-  //   }
+  sortData_Select(odabranaOpcija) {
+    let sort: Sort;
+    switch (odabranaOpcija) {
+      case "Po nazivu uzlazno":
+        sort = { "active": "naziv", "direction": "asc" };
+        break;
+      case "Po nazivu silazno":
+        sort = { "active": "naziv", "direction": "desc" };
+        break;
+      case "Po ceni silazno":
+        sort = { "active": "cena", "direction": "desc" };
+        break;
+      case "Po ceni uzlazno":
+        sort = { "active": "cena", "direction": "asc" };
+        break;
+      case "Po oceni silazno":
+        sort = { "active": "ocena", "direction": "desc" };
+        break;
+      case "Po oceni uzlazno":
+        sort = { "active": "ocena", "direction": "asc" };
+        break;
+      default:
+        this.dataSource = this.dataBackup;
+        return;
+    }
 
-  //   const data = this.dataSource.slice();
-  //   if (!sort.active || sort.direction === '') {
-  //     this.dataSorted = data;
-  //     return;
-  //   }
+    const data = this.dataSource.slice();
+    if (!sort.active || sort.direction === '') {
+      this.dataSorted = data;
+      return;
+    }
 
-  //   this.dataSorted = data.sort((a, b) => {
-  //     const isAsc = sort.direction === 'asc';
-  //     switch (sort.active) {
-  //       case 'ime': return compare(a.user.firstname, b.user.firstname, isAsc);
-  //       case 'prezime': return compare(a.user.lastname, b.user.lastname, isAsc);
-  //       case 'ocena': return compare(a.user.lastname, b.user.lastname, isAsc);
-  //       default: return 0;
-  //     }
-  //   });
-  //   this.dataSource = this.dataSorted;
-  // }
+    this.dataSorted = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'naziv': return compare(a.klinika.naziv, b.klinika.naziv, isAsc);
+        case 'cena': return compare(a.cena, b.cena, isAsc);
+        case 'ocena': return compare(a.cena, b.cena, isAsc);
+        default: return 0;
+      }
+    });
+    this.dataSource = this.dataSorted;
+  }
 
 }
 

@@ -41,19 +41,24 @@ public class KlinikaService {
 		for(Klinika klinika:klinike) {
 			Boolean nazivContains = !pretraga.getNaziv().isEmpty()?klinika.getNaziv().toLowerCase().contains(pretraga.getNaziv().toLowerCase()):true;
 			Boolean adresaContains = !pretraga.getAdresa().isEmpty()?klinika.getAdresa().toLowerCase().contains(pretraga.getAdresa().toLowerCase()):true;
-			Boolean klinikaImaSlobodnogLekaraZaPregled = true;
+			Boolean klinikaImaSlobodnogLekaraZaPregled = false;
 			List<Lekar> lekariKlinike = lekarRepository.findAllByKlinikaId(klinika.getId());
 			for(Lekar lekar : lekariKlinike) {
 				List<Termin> terminiLekara = terminRepository.findAllByRadniKalendarId(lekar.getRadniKalendar().getId());
 				for(Termin termin : terminiLekara) {
 					Date terminPosle = termin.getDatum();
 					terminPosle.setTime(termin.getDatum().getTime() + 1800000);
-					if(termin.getDatum().getTime()<pretraga.getTermin().getTime() && pretraga.getTermin().getTime() < terminPosle.getTime()) {
-						klinikaImaSlobodnogLekaraZaPregled = false;
+					if(!(termin.getDatum().getTime()<pretraga.getTermin().getTime() && pretraga.getTermin().getTime() < terminPosle.getTime())) {
+						klinikaImaSlobodnogLekaraZaPregled = true;
+						break;
 					}
 				}
+				if(klinikaImaSlobodnogLekaraZaPregled)
+					break;
 			}
 			
+			if(klinikaImaSlobodnogLekaraZaPregled && nazivContains && adresaContains)
+				pretrazeni.add(klinika);			
 		}
 		return pretrazeni;
 	}

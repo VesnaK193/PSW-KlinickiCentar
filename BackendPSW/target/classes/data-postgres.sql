@@ -26,16 +26,34 @@ insert into pacijent(user_id,zdravstvenikarton_id) values (3,1);
 insert into adminklinike(user_id,klinika_id) values (6,1);
 
 insert into lekar(specijalizacija,opis,user_id,klinika_id,radnikalendar_id) values('Lekar Opste Prakse','Opis petra petrovica.',4,1,1);
-insert into lekar(specijalizacija,opis,user_id,klinika_id,radnikalendar_id) values('Kardiolog','Opis milana milanovica.',5,1,2);
+insert into lekar(specijalizacija,opis,user_id,klinika_id,radnikalendar_id) values('Kardiolog','Opis milana milanovica.',5,2,2);
 
-insert into tippregleda (naziv, opis) values ('Osti Pregled','Opsti pregle pacijenata');
+insert into tippregleda (naziv, opis) values ('Opsti Pregled','Opsti pregle pacijenata');
 insert into tippregleda (naziv, opis) values ('Kardioloski Pregled','Kardioloski pregle pacijenata');
+insert into tippregleda (naziv, opis) values ('Stomatoloski Pregled','Stomatoloski pregle pacijenata');
+insert into tippregleda (naziv, opis) values ('Neuroloski Pregled','Neuroloski pregle pacijenata');
 
 insert into sala (naziv, klinika_id, brojsale) values ('Glavna Sala', 1,'1');
 
 insert into pregled (termin_id, sala_id, lekar_id, pacijent_id, tippregleda_id) values (1,1,1,1,1);
+insert into pregled (termin_id, sala_id, lekar_id, pacijent_id, tippregleda_id) values (1,1,2,1,1);
 
 insert into cenovnik (klinika_id, tippregleda_id, cena, popust) values (1,1,1200.00, 10);
+insert into cenovnik (klinika_id, tippregleda_id, cena, popust) values (2,1,1200.00, 20);
+insert into cenovnik (klinika_id, tippregleda_id, cena, popust) values (3,1,1200.00, 30);
+insert into cenovnik (klinika_id, tippregleda_id, cena, popust) values (4,1,1200.00, 40);
+insert into cenovnik (klinika_id, tippregleda_id, cena, popust) values (1,2,1350.00, 10);
+insert into cenovnik (klinika_id, tippregleda_id, cena, popust) values (2,2,1350.00, 20);
+insert into cenovnik (klinika_id, tippregleda_id, cena, popust) values (3,2,1350.00, 30);
+insert into cenovnik (klinika_id, tippregleda_id, cena, popust) values (4,2,1350.00, 40);
+insert into cenovnik (klinika_id, tippregleda_id, cena, popust) values (1,3,759.00, 10);
+insert into cenovnik (klinika_id, tippregleda_id, cena, popust) values (2,3,759.00, 20);
+insert into cenovnik (klinika_id, tippregleda_id, cena, popust) values (3,3,759.00, 30);
+insert into cenovnik (klinika_id, tippregleda_id, cena, popust) values (4,3,759.00, 40);
+insert into cenovnik (klinika_id, tippregleda_id, cena, popust) values (1,4,2500.00, 10);
+insert into cenovnik (klinika_id, tippregleda_id, cena, popust) values (2,4,2500.00, 20);
+insert into cenovnik (klinika_id, tippregleda_id, cena, popust) values (3,4,2500.00, 30);
+insert into cenovnik (klinika_id, tippregleda_id, cena, popust) values (4,4,2500.00, 40);
 
 --Unapred definiani pregledi
 insert into pregled (termin_id, sala_id, lekar_id, tippregleda_id) values (2,1,1,1);
